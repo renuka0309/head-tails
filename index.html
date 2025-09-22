@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heads or Tails</title>
+  <style>
+    .outer-style {
+      display: block;
+      justify-content: center;
+      align-content: center;
+      border: 1px;
+      border-radius: 20px;
+      border-color: grey;
+      background-image: linear-gradient(#130f36,#1E5E98);
+      box-shadow: 10px 10px 10px grey;
+      width: 500px;
+     
+    }
+    .inner-style{
+      display: flex;
+      justify-content: center;
+     
+    }
+
+    .head-class,
+    .tail-class {
+      padding-left: 18px;
+      padding-right: 18px;
+      padding-bottom: 8px;
+      padding-top: 8px;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      border: none;
+      border-radius: 15px;
+      background-color: #0077B6;
+      color: white;
+
+    }
+
+    .reset-class {
+      display: block;
+      padding-left: 18px;
+      padding-right: 18px;
+      padding-bottom: 8px;
+      padding-top: 8px;
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+      border-radius: 50px;
+      border: none;
+      box-shadow: 3px 3px 10px black;
+      cursor: pointer;
+    }
+
+    .reset-class:hover {
+      transform: scale(1.1);
+      background-color: #03045E;
+      color: white;
+    }
+
+    #container,
+    #levels {
+      width: 250px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+        background-color: #03045E;
+      color: white;
+    }
+    .info{
+      background-color: orange;
+      text-align: justify;
+      text-align-last: end;
+      padding-right: 20px;
+      margin-top: 0;
+    }
+    #totalWin{
+      background-color: #130f36;
+      color: whitesmoke;
+    }
+   
+  </style>
+</head>
+
+<body>
+  <div class="inner-style">
+  <div class="outer-style">
+    <div class="inner-style">
+    <button class="head-class" onclick="computerMoves('Heads')">
+      Heads
+    </button>
+    <button class="tail-class" onclick="computerMoves('Tails')">
+      Tails
+    </button>
+    </div>
+    <div class="inner-style">
+    <button class="reset-class" onclick="reset()">Reset</button>
+    </div>
+    <div class="inner-style">
+    <p id="container"></p>
+    </div>
+    <div class="inner-style">
+    <p id="levels"></p>
+  </div>
+  <div>
+    <p id="totalWin"></p>
+  </div>
+  </div>
+  </div>
+
+  <script>
+    let gamesPlayed = 0;
+    let countWin = 0;
+    let countLoose = 0;
+
+    function computerMoves(playerMove) {
+      let move = Math.random();
+      let result;
+
+      if (move <= 0.5) {
+        result = 'Heads';
+      } else {
+        result = 'Tails';
+      }
+
+      if (playerMove === result) {
+        countWin++;
+        document.getElementById('container').innerHTML = `You won : score - ${countWin}`;
+        document.getElementById('totalWin').innerHTML=` Your total score - ${countWin} &#10084;&#65039; `;
+
+      } else {
+        countLoose++;
+        document.getElementById('container').innerHTML = `You lost : score - ${countLoose}`;
+
+      }
+
+      gamesPlayed++;
+      document.getElementById('levels').innerHTML = `Number of times played - ${gamesPlayed}`;
+
+    
+    }
+
+    function reset() {
+      countWin = 0;
+      countLoose = 0;
+      document.getElementById('container').innerHTML = '';
+      document.getElementById('levels').innerHTML = '';
+
+    }
+
+    
+  </script>
+</body>
+
+</html>
